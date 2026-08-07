@@ -27,6 +27,8 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const res = await loginUser({ email, password });
+      console.log(res);
+      
       const { token, ...userData } = res.data;
       login(userData, token);
       navigate('/dashboard');
