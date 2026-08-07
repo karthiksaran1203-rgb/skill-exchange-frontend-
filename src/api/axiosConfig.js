@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ||"http://localhost:5000/api"});
+  // baseURL: import.meta.env.VITE_API_URL ||"http://localhost:5000/api"});
+ baseURL: import.meta.env.VITE_API_URL ||"https://skill-exchange-backend-1-ob1a.onrender.com/api"});
 
 // Request interceptor to add token
 API.interceptors.request.use(
