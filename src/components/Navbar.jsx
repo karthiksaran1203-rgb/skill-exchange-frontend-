@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -20,34 +21,38 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
-      <Container>
-        <Toolbar>
-          <Typography variant="h6" component={Link} to="/" sx={{ flexGrow: 1, textDecoration: 'none', color: 'white' }}>
-            SkillExchange
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
+    <AppBar position="static" sx={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters sx={{ justifyContent: 'space-between', minHeight: '80px !important' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <AutoAwesomeMosaicIcon sx={{ mr: 1, color: 'white' }} />
+            <Typography variant="h6" component={Link} to="/" sx={{ textDecoration: 'none', color: 'white', fontWeight: 600, letterSpacing: '-0.02em' }}>
+              SkillExchange
+            </Typography>
+          </Box>
+          
+          <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
             {user ? (
               <>
-                <Button color="inherit" component={Link} to="/skills">
-                  Skills
+                <Button sx={{ border: 'none', '&:hover': { background: 'transparent', color: 'secondary.main' } }} color="inherit" component={Link} to="/skills">
+                  • Skills
                 </Button>
-                <Button color="inherit" component={Link} to="/exchanges">
-                  Exchanges
+                <Button sx={{ border: 'none', '&:hover': { background: 'transparent', color: 'secondary.main' } }} color="inherit" component={Link} to="/exchanges">
+                  • Exchanges
                 </Button>
-                <Button color="inherit" component={Link} to="/dashboard">
-                  Dashboard
+                <Button sx={{ border: 'none', '&:hover': { background: 'transparent', color: 'secondary.main' } }} color="inherit" component={Link} to="/dashboard">
+                  • Dashboard
                 </Button>
-                <Button color="inherit" onClick={handleLogout}>
+                <Button variant="outlined" color="inherit" onClick={handleLogout} sx={{ ml: 2 }}>
                   Logout
                 </Button>
               </>
             ) : (
               <>
-                <Button color="inherit" component={Link} to="/login">
-                  Login
+                <Button sx={{ border: 'none', '&:hover': { background: 'transparent', color: 'secondary.main' } }} color="inherit" component={Link} to="/login">
+                  • Login
                 </Button>
-                <Button color="inherit" component={Link} to="/register">
+                <Button variant="outlined" color="inherit" component={Link} to="/register">
                   Register
                 </Button>
               </>

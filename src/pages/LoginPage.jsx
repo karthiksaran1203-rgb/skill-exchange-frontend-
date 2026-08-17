@@ -27,7 +27,6 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const res = await loginUser({ email, password });
-      console.log(res);
       
       const { token, ...userData } = res.data;
       login(userData, token);
@@ -40,12 +39,19 @@ const LoginPage = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 8 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
-        <Typography variant="h5" align="center" gutterBottom>
-          Login
+    <Container maxWidth="sm" sx={{ mt: 10, mb: 10, minHeight: '60vh', display: 'flex', alignItems: 'center' }}>
+      <Paper elevation={0} sx={{ 
+        p: { xs: 4, md: 6 }, 
+        width: '100%',
+        borderRadius: '24px',
+        background: 'rgba(255, 255, 255, 0.05)',
+        backdropFilter: 'blur(20px)',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+      }}>
+        <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 600, mb: 4 }}>
+          Welcome Back
         </Typography>
-        {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+        {error && <Alert severity="error" sx={{ mb: 3, backgroundColor: 'transparent', border: '1px solid rgba(255,0,0,0.3)', color: '#ff8a80' }}>{error}</Alert>}
         <form onSubmit={handleSubmit}>
           <TextField
             label="Email"
@@ -55,6 +61,17 @@ const LoginPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            variant="outlined"
+            InputLabelProps={{ style: { color: 'rgba(255,255,255,0.7)' } }}
+            sx={{ 
+              mb: 2,
+              '& .MuiOutlinedInput-root': {
+                color: 'white',
+                '& fieldset': { borderColor: 'rgba(255,255,255,0.2)' },
+                '&:hover fieldset': { borderColor: 'rgba(255,255,255,0.5)' },
+                '&.Mui-focused fieldset': { borderColor: 'white' },
+              }
+            }}
           />
           <TextField
             label="Password"
@@ -64,21 +81,32 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            variant="outlined"
+            InputLabelProps={{ style: { color: 'rgba(255,255,255,0.7)' } }}
+            sx={{ 
+              mb: 4,
+              '& .MuiOutlinedInput-root': {
+                color: 'white',
+                '& fieldset': { borderColor: 'rgba(255,255,255,0.2)' },
+                '&:hover fieldset': { borderColor: 'rgba(255,255,255,0.5)' },
+                '&.Mui-focused fieldset': { borderColor: 'white' },
+              }
+            }}
           />
           <Button
             type="submit"
             variant="contained"
             fullWidth
-            sx={{ mt: 3 }}
+            sx={{ py: 1.5, fontSize: '1.1rem', borderRadius: '8px' }}
             disabled={loading}
           >
             {loading ? 'Logging in...' : 'Login'}
           </Button>
         </form>
-        <Box sx={{ mt: 2, textAlign: 'center' }}>
-          <Typography variant="body2">
+        <Box sx={{ mt: 4, textAlign: 'center' }}>
+          <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
             Don&apos;t have an account?{' '}
-            <MuiLink component={RouterLink} to="/register">
+            <MuiLink component={RouterLink} to="/register" sx={{ color: 'secondary.main', textDecoration: 'none', fontWeight: 600 }}>
               Register
             </MuiLink>
           </Typography>
